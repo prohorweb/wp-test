@@ -45,22 +45,17 @@ define('WP_DEBUG', false);
 /* Custom settings */
 
 // If behind reverse proxy handling HTTPS
+// Force SSL for admin and logins (optional)
+define('FORCE_SSL_ADMIN', true);
+
+// Handle reverse proxy HTTPS detection
 if (
-    (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) ||
-    (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on')
+    (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') ||
+    (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
 ) {
     $_SERVER['HTTPS'] = 'on';
-    // Optional: force SSL admin pages
-    define('FORCE_SSL_ADMIN', true);
 }
 
-// Fix for proxy requests with X-Forwarded-Host or X-Forwarded-Port if needed
-if (!empty($_SERVER['HTTP_X_FORWARDED_HOST'])) {
-    $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_HOST'];
-}
-if (!empty($_SERVER['HTTP_X_FORWARDED_PORT'])) {
-    $_SERVER['SERVER_PORT'] = $_SERVER['HTTP_X_FORWARDED_PORT'];
-}
 
 /* Stop editing here. */
 
