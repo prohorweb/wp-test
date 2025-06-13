@@ -31,6 +31,7 @@ services:
     depends_on:
       - db
 
+<<<<<<< HEAD
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: wp-phpmyadmin
@@ -45,6 +46,22 @@ services:
       - db
     networks:
       - wpsite
+=======
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: wp-phpmyadmin
+  #   restart: always
+  #   ports:
+  #     - "8080:80" 
+  #   environment:
+  #     PMA_HOST: db
+  #     PMA_USER: root
+  #     PMA_PASSWORD: password
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - wpsite
+>>>>>>> 3a5c493 (init new)
 
 networks:
   wpsite:
