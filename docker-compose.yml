@@ -1,4 +1,19 @@
 services:
+  wordpress:
+      image: wordpress:php8.2-apache
+      container_name: wp-apache
+      restart: always
+      ports:
+        - "8000:80"
+      volumes:
+        - ./wordpress:/var/www/html
+      environment:
+        WORDPRESS_DB_HOST: db:3306
+        WORDPRESS_DB_NAME: wordpress
+        WORDPRESS_DB_USER: wordpress
+        WORDPRESS_DB_PASSWORD: password
+      networks:
+        - wpsite
   db:
     image: mariadb:10.5
     container_name: wp-db
@@ -13,38 +28,38 @@ services:
     networks:
       - wpsite
 
-  wordpress:
-    image: wordpress:php8.2-fpm
-    container_name: wp-php
-    restart: always
-    ports:
-    - "8000:80" 
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_NAME: wordpress
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: password
-    volumes:
-      - ./wordpress:/var/www/html
-    networks:
-      - wpsite
-    depends_on:
-      - db
+  # wordpress:
+  #   image: wordpress:php8.2-fpm
+  #   container_name: wp-php
+  #   restart: always
+  #   ports:
+  #   - "8000:80" 
+  #   environment:
+  #     WORDPRESS_DB_HOST: db:3306
+  #     WORDPRESS_DB_NAME: wordpress
+  #     WORDPRESS_DB_USER: wordpress
+  #     WORDPRESS_DB_PASSWORD: password
+  #   volumes:
+  #     - ./wordpress:/var/www/html
+  #   networks:
+  #     - wpsite
+  #   depends_on:
+  #     - db
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: wp-phpmyadmin
-    restart: always
-    ports:
-      - "8080:80"
-    environment:
-      PMA_HOST: db
-      PMA_USER: root
-      PMA_PASSWORD: password
-    depends_on:
-      - db
-    networks:
-      - wpsite
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: wp-phpmyadmin
+  #   restart: always
+  #   ports:
+  #     - "8080:80"
+  #   environment:
+  #     PMA_HOST: db
+  #     PMA_USER: root
+  #     PMA_PASSWORD: password
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - wpsite
 
 networks:
   wpsite:
