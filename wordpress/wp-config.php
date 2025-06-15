@@ -44,17 +44,15 @@ define('WP_DEBUG', false);
 
 /* Custom settings */
 
-// If behind reverse proxy handling HTTPS
-// Force SSL for admin and logins (optional)
+define('WP_HOME', 'https://prohorweb-wp-test-6912.twc1.net');
+define('WP_SITEURL', 'https://prohorweb-wp-test-6912.twc1.net');
 define('FORCE_SSL_ADMIN', true);
 
-// Handle reverse proxy HTTPS detection
-// if (
-//     (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') ||
-//     (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
-// ) {
-//     $_SERVER['HTTPS'] = 'on';
-// }
+// Optional: force HTTPS detection
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+    $_SERVER['HTTPS'] = 'on';
+}
+
 
 
 /* Stop editing here. */
