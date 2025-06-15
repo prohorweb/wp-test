@@ -46,12 +46,13 @@ define('WP_DEBUG', false);
 
 define('WP_HOME', 'https://prohorweb-wp-test-6912.twc1.net');
 define('WP_SITEURL', 'https://prohorweb-wp-test-6912.twc1.net');
-// define('FORCE_SSL_ADMIN', true);
+define('FORCE_SSL_ADMIN', true);
 
 // Optional: force HTTPS detection
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
     $_SERVER['HTTPS'] = 'on';
 }
+
 
 
 /* Stop editing here. */
