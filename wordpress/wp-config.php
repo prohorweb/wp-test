@@ -46,7 +46,7 @@ define('WP_DEBUG', false);
 
 // If behind reverse proxy handling HTTPS
 // Force SSL for admin and logins (optional)
-define('FORCE_SSL_ADMIN', true);
+// define('FORCE_SSL_ADMIN', true);
 
 // Handle reverse proxy HTTPS detection
 if (
