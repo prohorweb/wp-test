@@ -25,8 +25,8 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: password
-    volumes:
-      - ./mysql/wordpress:/var/lib/mysql/wordpress
+    # volumes:
+    #   - ./mysql/wordpress:/var/lib/mysql/wordpress
     networks:
       - wpsite
 
